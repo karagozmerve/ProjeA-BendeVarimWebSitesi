@@ -1,0 +1,75 @@
+﻿@model IList<bendevarimproje.Models.mesaj>
+<style>
+    .butonum {
+        color: #034f84;
+    }
+</style>
+
+@if (Session["kmail"] == null)
+{
+    <script>
+        window.alert("Mesajlarınızı görüntüleyebilmeniz için giriş yapmanız gerekmektedir.");
+        window.location.href = 'https://localhost:44309/Kullanici/Login';
+    </script>
+
+}
+else
+{
+<body style="background-color:#667292;">
+    <div style="margin-top:100px;">
+        <a href="https://localhost:44309/Bagistek/OkunmusMesajlarım"><h6 style="color:white;"> <img src="~/Content/images/icons/read.png" width="35" height="35" />Okunmuş Mesajlarımı Listele </h6></a>
+        <a href="https://localhost:44309/Bagistek/GonderdigimMesajlar"><h6 style="color:white;"> Gönderdiğim Mesajlarımı Listele <img src="~/Content/images/icons/message.png" width="35" height="35" /></h6></a>
+
+    </div>
+    @foreach (var obj in Model)
+    {
+        <div >
+            @using (Html.BeginForm("MesajYanit", "Bagistek", FormMethod.Post))
+            {
+                <h1 style="visibility:hidden;">@obj.id</h1>
+                <div class="limiter">
+
+                    <div class="container-login100" style="background-color:white; width:870px;margin-left:120px;">
+
+                        <div class="wrap-login100" style=" border: 3px solid #667292; box-shadow: 1px 1px 2px;height:500px;">
+
+
+                            <form class="login100-form validate-form">
+                                <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
+                                    <br />
+                                    <h5 style="color: #034f84;font:italic;">Gönderici Adı</h5>        <hr />
+                                    <h5 style="color: black;">@obj.gonderenadi</h5>
+
+                                </div>
+                                <br />
+                                <div class="wrap-input100 validate-input m-b-18" data-validate="Password is required">
+                                    <h5 style="color: #034f84;font:italic;">Mesajın Konusu</h5>        <hr />
+                                    <h5 style="color: black;">@obj.konu</h5>
+                                </div><br />
+                                <div class="wrap-input100 validate-input m-b-18" data-validate="Password is required">
+                                    <h5 style="color: #034f84;font:italic;">Mesaj   <img src="~/Content/images/icons/chat.png" width="32" height="32" /></h5>        <hr />
+                                    <h5 style="color: black;">@obj.mesaj1</h5>
+                                </div>
+                                <br /><br /><br />
+                                <div class="container-login100-form-btn" style="padding-left:5px;">
+                                    @Html.ActionLink("Okundu Olarak İşaretle", "Okundu", new { id = obj.id }, new { @class = "butonum" }) /
+                                    @Html.ActionLink("Yanıtla", "MesajYanit", new { id = obj.id }, new { @class = "butonum" })
+                                </div>
+                                <h1 style="visibility:hidden;">d</h1>
+
+
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+            }
+        </div>}
+</body>
+}

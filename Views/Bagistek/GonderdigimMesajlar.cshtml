@@ -1,0 +1,58 @@
+﻿@model IList<bendevarimproje.Models.mesaj>
+
+
+@if (Session["kmail"] == null)
+{
+    <script>
+        window.alert("Mesajlarınızı görüntüleyebilmeniz için giriş yapmanız gerekmektedir.");
+        window.location.href = 'https://localhost:44309/Kullanici/Login';
+    </script>
+
+}
+else
+{
+<body style="background-color:#667292;">
+    <div style="margin-top:100px;">
+    <h6 style="color:white;"> Gönderdiğim Mesajlarım <img src="~/Content/images/icons/message.png" width="35" height="35" /></h6>
+
+    </div>
+    @foreach (var obj in Model)
+    {
+        <div>
+            <h1 style="visibility:hidden;">@obj.id</h1>
+            <div class="limiter">
+
+                <div class="container-login100" style="background-color:white; width:870px;margin-left:120px;">
+
+                    <div class="wrap-login100" style=" border: 3px solid #667292; box-shadow: 1px 1px 2px;height:500px;">
+
+
+                        <form class="login100-form validate-form">
+                            <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
+                                <br />
+                                <h5 style="color: #034f84;font:italic;">Alıcı Maili</h5>        <hr />
+                                <h5 style="color: black;">@obj.alicimail</h5>
+
+                            </div>
+                            <br />
+                            <div class="wrap-input100 validate-input m-b-18" data-validate="Password is required">
+                                <h5 style="color: #034f84;font:italic;">Mesajın Konusu</h5>        <hr />
+                                <h5 style="color: black;">@obj.konu</h5>
+                            </div><br />
+                            <div class="wrap-input100 validate-input m-b-18" data-validate="Password is required">
+                                <h5 style="color: #034f84;font:italic;">Mesaj   <img src="~/Content/images/icons/chat.png" width="32" height="32" /></h5>        <hr />
+                                <h5 style="color: black;">@obj.mesaj1</h5>
+                            </div>
+
+                            <h1 style="visibility:hidden;">d</h1>
+
+
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>}
+</body>
+}

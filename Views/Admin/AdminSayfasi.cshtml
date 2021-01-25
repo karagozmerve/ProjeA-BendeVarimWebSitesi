@@ -1,0 +1,97 @@
+﻿@{
+    Layout = null;
+}
+
+@if (Session["kadi"] == null)
+{
+    <script>
+        window.alert("Herhangi bir işlem yapabilmeniz için giriş yapmanız gerekmektedir.");
+        window.location.href = 'https://localhost:44309/Admin/Giris';
+    </script>
+
+}
+else
+{
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <title>Admin Sayfası</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Admin Sayfası</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
+        <!-- Third party plugin CSS-->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="~/Content/css/styles.css" rel="stylesheet" />
+
+    </head>
+    <body id="page-top">
+
+      
+        <!-- Masthead-->
+        <header style="        background-color: #355C7D;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: scroll;
+        background-size: cover;
+        height: 100vh;
+        min-height: 40rem;
+        padding-top: 4.5rem;
+        padding-bottom: 0;">
+            <div class="container h-100" style="padding-top:100px;">
+                <div class="row h-100 align-items-center justify-content-center text-center">
+                    <div class="col-lg-10 align-self-end">
+                        <h1 class="text-uppercase text-white font-weight-bold">ADMİN SAYFASI</h1>
+                        <hr class="divider my-4" />
+                    </div>
+                    <div class="col-lg-8 align-self-baseline">
+                        <p class="text-white-75 font-weight-light mb-5">"Yapmak İstediğiniz İşlemi Seçiniz."</p>
+
+                        <a class="btn btn-outline-light" href="https://localhost:44309/Admin/Kullanicilar">Kullanıcıları Listele/Düzenle</a>
+                        <a class="btn btn-outline-light" href="https://localhost:44309/Admin/ParaBagisiKontrol">Para Bağışlarını Onayla/Sil</a>
+                        <a class="btn btn-outline-light" href="https://localhost:44309/Admin/OnaylananParaBagisi">Onaylanan Para Bağışlarını Listele</a><br /><br />
+                        <a class="btn btn-outline-light" href="https://localhost:44309/Admin/Bagislar">Bağışları Listele/Düzenle</a>
+                        <a class="btn btn-outline-light" href="https://localhost:44309/Admin/Istekler">İstekleri Listele/Düzenle</a>
+                        <a class="btn btn-outline-light" href="https://localhost:44309/Admin/Etiketler">Etiketleri Listele/Düzenle</a><br /><br />
+                        <a class="btn btn-outline-light" href="https://localhost:44309/Admin/BagisEkle">Bağış Ekle</a>
+                        <a class="btn btn-outline-light" href="https://localhost:44309/Admin/EklenenBagislar">Eklenen Bağışları Listele/Düzenle</a>
+                        <a class="btn btn-outline-light" href="https://localhost:44309/Admin/BagisOnayla">Kullanıcıların Özel Bağışlarını Onayla/Sil</a>
+                        <a class="btn btn-outline-light" href="https://localhost:44309/Admin/BagisListele">Onaylanan Özel Bağışları Listele</a>
+
+
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </header>
+
+
+        <!-- Footer-->
+        <footer class="bg-light py-5">
+            <div class="container"><div class="small text-center text-muted">Copyright © 2020 - Ben de Varım</div></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Third party plugin JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="~/Content/js/scripts.js"></script>
+    </body>
+</html>
+
+}

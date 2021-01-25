@@ -1,0 +1,144 @@
+﻿@using bendevarimproje.Models
+@model bendevarimproje.Models.kullanicilar
+@{
+    ViewBag.Title = "Kayıt Ol";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Kayıt Ol</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="~/Content/images/icons/favicon.ico" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/css/util.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/main.css">
+    <!--===============================================================================================-->
+</head>
+<body>
+
+    <div class="limiter">
+        <div class="container-login100" style="background-color:white;">
+
+            <div class="wrap-login100" style=" border: 3px solid #667292; box-shadow: 1px 1px 2px;">
+                <div class="login100-form-title" style="background-color: #667292;">
+                    <h6 style="color:white; font-weight:bold;">Ben de Varım</h6><h6 style="color:white; font-weight:bold;">. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . </h6><br />
+                    <span class="login100-form-title-1">
+                        Kayıt Ol
+                    </span>
+                </div>
+
+                @using (Html.BeginForm("Ekle", "Kullanici", FormMethod.Post))
+                {
+                    @ViewBag.Mesaj
+                    @Html.AntiForgeryToken()
+
+                    <br />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group row" data-validate="Kullanıcı adı gerekli" style="padding-left:8px;">
+                        @Html.Label("Kullanıcı Adı", htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(m => m.ad, new { @class = "input100", placeholder = "Kullanıcı adını giriniz", required = "required" })
+                            @Html.ValidationMessageFor(model => model.ad, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="form-group row" data-validate="Kullanıcı soyadı gerekli" style="padding-left:8px;">
+                        @Html.Label("Kullanıcı Soyadı ", htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(m => m.soyad, new { @class = "input100", placeholder = "Kullanıcı soyadını giriniz", required = "required" })
+                            @Html.ValidationMessageFor(model => model.soyad, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="form-group row" data-validate="Mail adresi gerekli" style="padding-left:8px;">
+                        @Html.Label("Mail Adresi", htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(m => m.mail, new { @type = "email", @class = "input100", placeholder = "Mail adresinizi giriniz", required = "required" })
+                            @Html.ValidationMessageFor(model => model.mail, "", new { @class = "text-danger" })
+                        </div>
+                    </div><hr />
+                    <div class="form-group row" data-validate="Doğum tarihi gerekli" style="padding-left:8px;">
+                        @Html.Label(" Doğum Tarihi", htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(m => m.dgtarih, new { @type = "date", @class = "input100", required = "required" })
+                            @Html.ValidationMessageFor(model => model.dgtarih, "", new { @class = "text-danger" })
+                        </div>
+                    </div><hr />
+
+                    <div class="form-group row" data-validate="TCKN gerekli" style="padding-left:8px;">
+                        @Html.Label("TC Kimlik Numarası", htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(m => m.tckimlik, new { @class = "input100", placeholder = "TCKN giriniz", required = "required",onkeypress ="return event.charCode>= 48 &&event.charCode<= 57",maxlength="11",minlength="11" })
+                            @Html.ValidationMessageFor(model => model.tckimlik, "", new { @class = "text-danger" })
+                        </div>
+                    </div><hr />
+                    <div class="form-group row" style="padding-left:8px;">
+                        @Html.Label(" Cinsiyet", htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                        <div class="col-sm-10">
+                            @Html.RadioButtonFor(m => m.cinsiyet, "kadin", true)Kadın
+                            @Html.RadioButtonFor(m => m.cinsiyet, "erkek")Erkek
+                            @Html.ValidationMessageFor(model => model.cinsiyet, "", new { @class = "text-danger" })
+                        </div>
+                    </div><hr />
+
+                    <div class="form-group row" data-validate="Şifre gerekli" style="padding-left:8px;">
+                        @Html.Label("Şifre", htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                        <div class="col-sm-10">
+                            @Html.PasswordFor(m => m.sifre, new { @class = "input100", placeholder = "Şifrenizi giriniz", required = "required" })
+                            @Html.ValidationMessageFor(model => model.sifre, "", new { @class = "text-danger" })
+                        </div>
+                    </div><hr />
+
+                    <div class="container-login100-form-btn" style="padding-left:5px;">
+
+                        <input type="submit" class="btn btn-outline-secondary" value=" Kayıt Ol">
+                        <h1 style="visibility:hidden;">ı</h1>
+                        <a href="Login" class="btn btn-outline-secondary btn-xl">Giriş Ekranına Dön</a>
+
+                    </div>
+                    <h1 style="visibility:hidden;">d</h1>
+
+                }
+            </div>
+        </div>
+    </div>
+
+    <!--===============================================================================================-->
+    <script src="~/Content/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/vendor/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/vendor/bootstrap/js/popper.js"></script>
+    <script src="~/Content/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/vendor/daterangepicker/moment.min.js"></script>
+    <script src="~/Content/vendor/daterangepicker/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/vendor/countdowntime/countdowntime.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/js/main.js"></script>
+
+</body>
+</html>

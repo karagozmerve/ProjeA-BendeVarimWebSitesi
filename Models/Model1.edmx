@@ -1,0 +1,576 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="projedenemeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="bagis">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="mail" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="baslik" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="aciklama" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="etiketler" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="bagisekle">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="bagisadi" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="aciklama" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="miktar" Type="int" Nullable="false" />
+          <Property Name="bagisfotograf" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="bagisyap">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="mail" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="bagisadi" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="miktar" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="banka" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="onaydurumu" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="bridge">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="etiketid" />
+            <PropertyRef Name="istekid" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="etiketid" Type="int" Nullable="false" />
+          <Property Name="istekid" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="bridgeb">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="etiketid" />
+            <PropertyRef Name="bagisid" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="etiketid" Type="int" Nullable="false" />
+          <Property Name="bagisid" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="etiket">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tag" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="istek">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="mail" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="baslik" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="aciklama" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="etiketler" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="kullanicilar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ad" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="soyad" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="mail" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="dgtarih" Type="date" Nullable="false" />
+          <Property Name="tckimlik" Type="nvarchar" MaxLength="11" Nullable="false" />
+          <Property Name="cinsiyet" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="sifre" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="mesaj">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="gonderenadi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="gonderenmail" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="alicimail" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="konu" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="mesaj" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="durum" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="onaylananparabagisi">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="mail" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="miktar" Type="float" Nullable="false" />
+          <Property Name="banka" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="parabagisistek">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="mail" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="miktar" Type="float" Nullable="false" />
+          <Property Name="banka" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_bridge_etiket">
+          <End Role="etiket" Type="Self.etiket" Multiplicity="1" />
+          <End Role="bridge" Type="Self.bridge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="etiket">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="bridge">
+              <PropertyRef Name="etiketid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bridge_istek">
+          <End Role="istek" Type="Self.istek" Multiplicity="1" />
+          <End Role="bridge" Type="Self.bridge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="istek">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="bridge">
+              <PropertyRef Name="istekid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bridgeb_bagis">
+          <End Role="bagis" Type="Self.bagis" Multiplicity="1" />
+          <End Role="bridgeb" Type="Self.bridgeb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bagis">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="bridgeb">
+              <PropertyRef Name="bagisid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bridgeb_etiket">
+          <End Role="etiket" Type="Self.etiket" Multiplicity="1" />
+          <End Role="bridgeb" Type="Self.bridgeb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="etiket">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="bridgeb">
+              <PropertyRef Name="etiketid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="projedenemeModelStoreContainer">
+          <EntitySet Name="bagis" EntityType="Self.bagis" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="bagisekle" EntityType="Self.bagisekle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="bagisyap" EntityType="Self.bagisyap" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="bridge" EntityType="Self.bridge" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="bridgeb" EntityType="Self.bridgeb" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="etiket" EntityType="Self.etiket" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="istek" EntityType="Self.istek" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="kullanicilar" EntityType="Self.kullanicilar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mesaj" EntityType="Self.mesaj" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="onaylananparabagisi" EntityType="Self.onaylananparabagisi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="parabagisistek" EntityType="Self.parabagisistek" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_bridge_etiket" Association="Self.FK_bridge_etiket">
+            <End Role="etiket" EntitySet="etiket" />
+            <End Role="bridge" EntitySet="bridge" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bridge_istek" Association="Self.FK_bridge_istek">
+            <End Role="istek" EntitySet="istek" />
+            <End Role="bridge" EntitySet="bridge" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bridgeb_bagis" Association="Self.FK_bridgeb_bagis">
+            <End Role="bagis" EntitySet="bagis" />
+            <End Role="bridgeb" EntitySet="bridgeb" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bridgeb_etiket" Association="Self.FK_bridgeb_etiket">
+            <End Role="etiket" EntitySet="etiket" />
+            <End Role="bridgeb" EntitySet="bridgeb" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="projedenemeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="bagis">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="baslik" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="aciklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="etiketler" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="bridgeb" Relationship="Self.FK_bridgeb_bagis" FromRole="bagis" ToRole="bridgeb" />
+        </EntityType>
+        <EntityType Name="bridge">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="etiketid" />
+            <PropertyRef Name="istekid" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="etiketid" Type="Int32" Nullable="false" />
+          <Property Name="istekid" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="etiket" Relationship="Self.FK_bridge_etiket" FromRole="bridge" ToRole="etiket" />
+          <NavigationProperty Name="istek" Relationship="Self.FK_bridge_istek" FromRole="bridge" ToRole="istek" />
+        </EntityType>
+        <EntityType Name="bridgeb">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="etiketid" />
+            <PropertyRef Name="bagisid" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="etiketid" Type="Int32" Nullable="false" />
+          <Property Name="bagisid" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="bagis" Relationship="Self.FK_bridgeb_bagis" FromRole="bridgeb" ToRole="bagis" />
+          <NavigationProperty Name="etiket" Relationship="Self.FK_bridgeb_etiket" FromRole="bridgeb" ToRole="etiket" />
+        </EntityType>
+        <EntityType Name="etiket">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tag" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="bridge" Relationship="Self.FK_bridge_etiket" FromRole="etiket" ToRole="bridge" />
+          <NavigationProperty Name="bridgeb" Relationship="Self.FK_bridgeb_etiket" FromRole="etiket" ToRole="bridgeb" />
+        </EntityType>
+        <EntityType Name="istek">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="baslik" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="aciklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="etiketler" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="bridge" Relationship="Self.FK_bridge_istek" FromRole="istek" ToRole="bridge" />
+        </EntityType>
+        <EntityType Name="kullanicilar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="dgtarih" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="tckimlik" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="cinsiyet" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_bridgeb_bagis">
+          <End Role="bagis" Type="Self.bagis" Multiplicity="1" />
+          <End Role="bridgeb" Type="Self.bridgeb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bagis">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="bridgeb">
+              <PropertyRef Name="bagisid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bridge_etiket">
+          <End Role="etiket" Type="Self.etiket" Multiplicity="1" />
+          <End Role="bridge" Type="Self.bridge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="etiket">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="bridge">
+              <PropertyRef Name="etiketid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bridge_istek">
+          <End Role="istek" Type="Self.istek" Multiplicity="1" />
+          <End Role="bridge" Type="Self.bridge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="istek">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="bridge">
+              <PropertyRef Name="istekid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bridgeb_etiket">
+          <End Role="etiket" Type="Self.etiket" Multiplicity="1" />
+          <End Role="bridgeb" Type="Self.bridgeb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="etiket">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="bridgeb">
+              <PropertyRef Name="etiketid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="projedenemeEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="bagis" EntityType="Self.bagis" />
+          <EntitySet Name="bridge" EntityType="Self.bridge" />
+          <EntitySet Name="bridgeb" EntityType="Self.bridgeb" />
+          <EntitySet Name="etiket" EntityType="Self.etiket" />
+          <EntitySet Name="istek" EntityType="Self.istek" />
+          <EntitySet Name="kullanicilar" EntityType="Self.kullanicilar" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <AssociationSet Name="FK_bridgeb_bagis" Association="Self.FK_bridgeb_bagis">
+            <End Role="bagis" EntitySet="bagis" />
+            <End Role="bridgeb" EntitySet="bridgeb" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bridge_etiket" Association="Self.FK_bridge_etiket">
+            <End Role="etiket" EntitySet="etiket" />
+            <End Role="bridge" EntitySet="bridge" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bridge_istek" Association="Self.FK_bridge_istek">
+            <End Role="istek" EntitySet="istek" />
+            <End Role="bridge" EntitySet="bridge" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bridgeb_etiket" Association="Self.FK_bridgeb_etiket">
+            <End Role="etiket" EntitySet="etiket" />
+            <End Role="bridgeb" EntitySet="bridgeb" />
+          </AssociationSet>
+          <EntitySet Name="parabagisistek" EntityType="projedenemeModel.parabagisistek" />
+          <EntitySet Name="onaylananparabagisi" EntityType="projedenemeModel.onaylananparabagisi" />
+          <EntitySet Name="mesaj" EntityType="projedenemeModel.mesaj" />
+          <EntitySet Name="bagisekle" EntityType="projedenemeModel.bagisekle" />
+          <EntitySet Name="bagisyap" EntityType="projedenemeModel.bagisyap" />
+        </EntityContainer>
+        <EntityType Name="parabagisistek">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="mail" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="miktar" Type="Double" Nullable="false" />
+          <Property Name="banka" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="onaylananparabagisi">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="mail" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="miktar" Type="Double" Nullable="false" />
+          <Property Name="banka" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="mesaj">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="gonderenadi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="gonderenmail" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="alicimail" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="konu" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="mesaj1" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="durum" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="bagisekle">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="bagisadi" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="aciklama" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="miktar" Type="Int32" Nullable="false" />
+          <Property Name="bagisfotograf" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="bagisyap">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="mail" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="bagisadi" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="miktar" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="banka" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="onaydurumu" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="projedenemeModelStoreContainer" CdmEntityContainer="projedenemeEntities">
+          <EntitySetMapping Name="bagis">
+            <EntityTypeMapping TypeName="projedenemeModel.bagis">
+              <MappingFragment StoreEntitySet="bagis">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="mail" ColumnName="mail" />
+                <ScalarProperty Name="baslik" ColumnName="baslik" />
+                <ScalarProperty Name="aciklama" ColumnName="aciklama" />
+                <ScalarProperty Name="etiketler" ColumnName="etiketler" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bridge">
+            <EntityTypeMapping TypeName="projedenemeModel.bridge">
+              <MappingFragment StoreEntitySet="bridge">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="etiketid" ColumnName="etiketid" />
+                <ScalarProperty Name="istekid" ColumnName="istekid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bridgeb">
+            <EntityTypeMapping TypeName="projedenemeModel.bridgeb">
+              <MappingFragment StoreEntitySet="bridgeb">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="etiketid" ColumnName="etiketid" />
+                <ScalarProperty Name="bagisid" ColumnName="bagisid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="etiket">
+            <EntityTypeMapping TypeName="projedenemeModel.etiket">
+              <MappingFragment StoreEntitySet="etiket">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="tag" ColumnName="tag" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="istek">
+            <EntityTypeMapping TypeName="projedenemeModel.istek">
+              <MappingFragment StoreEntitySet="istek">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="mail" ColumnName="mail" />
+                <ScalarProperty Name="baslik" ColumnName="baslik" />
+                <ScalarProperty Name="aciklama" ColumnName="aciklama" />
+                <ScalarProperty Name="etiketler" ColumnName="etiketler" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="kullanicilar">
+            <EntityTypeMapping TypeName="projedenemeModel.kullanicilar">
+              <MappingFragment StoreEntitySet="kullanicilar">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ad" ColumnName="ad" />
+                <ScalarProperty Name="soyad" ColumnName="soyad" />
+                <ScalarProperty Name="mail" ColumnName="mail" />
+                <ScalarProperty Name="dgtarih" ColumnName="dgtarih" />
+                <ScalarProperty Name="tckimlik" ColumnName="tckimlik" />
+                <ScalarProperty Name="cinsiyet" ColumnName="cinsiyet" />
+                <ScalarProperty Name="sifre" ColumnName="sifre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="projedenemeModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="parabagisistek">
+            <EntityTypeMapping TypeName="projedenemeModel.parabagisistek">
+              <MappingFragment StoreEntitySet="parabagisistek">
+                <ScalarProperty Name="banka" ColumnName="banka" />
+                <ScalarProperty Name="miktar" ColumnName="miktar" />
+                <ScalarProperty Name="mail" ColumnName="mail" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="onaylananparabagisi">
+            <EntityTypeMapping TypeName="projedenemeModel.onaylananparabagisi">
+              <MappingFragment StoreEntitySet="onaylananparabagisi">
+                <ScalarProperty Name="banka" ColumnName="banka" />
+                <ScalarProperty Name="miktar" ColumnName="miktar" />
+                <ScalarProperty Name="mail" ColumnName="mail" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mesaj">
+            <EntityTypeMapping TypeName="projedenemeModel.mesaj">
+              <MappingFragment StoreEntitySet="mesaj">
+                <ScalarProperty Name="durum" ColumnName="durum" />
+                <ScalarProperty Name="mesaj1" ColumnName="mesaj" />
+                <ScalarProperty Name="konu" ColumnName="konu" />
+                <ScalarProperty Name="alicimail" ColumnName="alicimail" />
+                <ScalarProperty Name="gonderenmail" ColumnName="gonderenmail" />
+                <ScalarProperty Name="gonderenadi" ColumnName="gonderenadi" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bagisekle">
+            <EntityTypeMapping TypeName="projedenemeModel.bagisekle">
+              <MappingFragment StoreEntitySet="bagisekle">
+                <ScalarProperty Name="bagisfotograf" ColumnName="bagisfotograf" />
+                <ScalarProperty Name="miktar" ColumnName="miktar" />
+                <ScalarProperty Name="aciklama" ColumnName="aciklama" />
+                <ScalarProperty Name="bagisadi" ColumnName="bagisadi" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bagisyap">
+            <EntityTypeMapping TypeName="projedenemeModel.bagisyap">
+              <MappingFragment StoreEntitySet="bagisyap">
+                <ScalarProperty Name="onaydurumu" ColumnName="onaydurumu" />
+                <ScalarProperty Name="banka" ColumnName="banka" />
+                <ScalarProperty Name="miktar" ColumnName="miktar" />
+                <ScalarProperty Name="bagisadi" ColumnName="bagisadi" />
+                <ScalarProperty Name="mail" ColumnName="mail" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

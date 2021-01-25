@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5c81e20f69074c2e922f93608d590826" Name="Diagram1">
+        <EntityTypeShape EntityType="projedenemeModel.bagis" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="projedenemeModel.bridge" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="projedenemeModel.bridgeb" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="projedenemeModel.etiket" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="projedenemeModel.istek" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="projedenemeModel.kullanicilar" Width="1.5" PointX="5.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="projedenemeModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="7.125" IsExpanded="true" />
+        <AssociationConnector Association="projedenemeModel.FK_bridgeb_bagis" ManuallyRouted="false" />
+        <AssociationConnector Association="projedenemeModel.FK_bridge_etiket" ManuallyRouted="false" />
+        <AssociationConnector Association="projedenemeModel.FK_bridge_istek" ManuallyRouted="false" />
+        <AssociationConnector Association="projedenemeModel.FK_bridgeb_etiket" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="projedenemeModel.parabagisistek" Width="1.5" PointX="5.375" PointY="5.75" />
+        <EntityTypeShape EntityType="projedenemeModel.onaylananparabagisi" Width="1.5" PointX="7.375" PointY="5.75" />
+        <EntityTypeShape EntityType="projedenemeModel.mesaj" Width="1.5" PointX="8.375" PointY="0.75" />
+        <EntityTypeShape EntityType="projedenemeModel.bagisekle" Width="1.5" PointX="5.375" PointY="8.75" />
+        <EntityTypeShape EntityType="projedenemeModel.bagisyap" Width="1.5" PointX="7.375" PointY="8.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
